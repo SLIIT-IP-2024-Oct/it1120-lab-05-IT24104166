@@ -1,1 +1,40 @@
-Upload the answer here
+import java.util.Scanner;
+
+public class ITxxxxxxxxLab5Q3 {
+    public static void main(String[] args) {
+        final double ROOM_CHARGE_PER_DAY = 48000.00;
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the start date (1-31): ");
+        int startDate = scanner.nextInt();
+
+        System.out.println("Enter the end date (1-31): ");
+        int endDate = scanner.nextInt();
+
+        // Validations
+        if (startDate < 1 || startDate > 31 || endDate < 1 || endDate > 31) {
+            System.out.println("Error: Dates must be between 1 and 31.");
+            return;
+        }
+
+        if (startDate >= endDate) {
+            System.out.println("Error: Start date must be less than end date.");
+            return;
+        }
+        int daysReserved = endDate - startDate;
+
+        double discountRate = 0.0;
+        if (daysReserved > 3) {
+            discountRate = (daysReserved <= 4) ? 0.10 : 0.20;
+        }
+        double totalCost = daysReserved * ROOM_CHARGE_PER_DAY;
+        double discount = totalCost * discountRate;
+        double finalAmount = totalCost - discount;
+
+        System.out.println("Number of days reserved: " + daysReserved);
+        System.out.println("Total cost before discount: "+ totalCost);
+        System.out.println("Discount: "+ discount);
+        System.out.println("Final amount to be paid: "+ finalAmount);
+    }
+}
